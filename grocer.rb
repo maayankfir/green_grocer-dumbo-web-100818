@@ -24,6 +24,7 @@ def apply_coupons(cart, coupons)
     coupons.each do |coup|
       item_name = coup[:item]
       if element == item_name && info[:count] >= coup[:num]
+        info[:count] = info[:count] - coup[:num]
         if new_cart.keys.include?(item_name + " W/COUPON")
           new_cart[item_name + " W/COUPON"][:count] += 1
           else
