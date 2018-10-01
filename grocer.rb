@@ -23,11 +23,11 @@ def apply_coupons(cart, coupons)
     new_cart[item] = info
     coupons.each do |coup|
       if element == coup[:item] && info[:count] >= coup[:num]
-        if new_cart.keys.include?("#{element} W/COUPON")
-          new_cart["#{element} W/COUPON"][:count] += 1
+        if new_cart.keys.include?("#{coup[:item]} W/COUPON")
+          new_cart["#{coup[:item]} W/COUPON"][:count] += 1
           else
             new_cart[item][:count] -= coup[:num]
-            new_cart["#{element} W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
+            new_cart["#{coup[:item]} W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
         end
       end
     end
