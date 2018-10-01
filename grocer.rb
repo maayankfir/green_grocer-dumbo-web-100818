@@ -40,7 +40,7 @@ def apply_clearance(cart)
   new_cart = {}
   cart.each do |element, info|
     if info[:clearance] == true
-      new_cart[element] = {:price => info[:price]*0.8, :clearance => info[:clearance], :count => info[:count] }
+      new_cart[element] = {:price => (info[:price]*0.8).round(1), :clearance => info[:clearance], :count => info[:count] }
     else info[:clearance] == false
       new_cart[element] = {:price => info[:price], :clearance => info[:clearance], :count => info[:count] }
     end
