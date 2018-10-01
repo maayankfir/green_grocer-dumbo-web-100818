@@ -53,7 +53,7 @@ def checkout(cart, coupons)
   cart = apply_coupons(cart, coupons)
   cart = apply_clearance(cart)
 
-  total_cost = 0 
+  total_cost = 0
   cart.each do |element, info|
     if cart[element][:count] > 0
     total_cost += ( cart[element][:price] * cart[element][:count] )
