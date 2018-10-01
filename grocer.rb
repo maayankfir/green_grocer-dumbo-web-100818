@@ -20,19 +20,19 @@ end
 def apply_coupons(cart, coupons)
   new_cart = {}
   cart.each do |element, info|
+    new_cart[item] = info
     coupons.each do |coup|
       if element == coup[:item] && info[:count] >= coup[:num]
-        info[:count] = info[:count] - coup[:num]
-        if cart[element + "W/COUPON"]
-          cart[element + "W/COUPON"][:count] += 1
-        else
-          cart[element + "W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
+        if new_cart.keys.include?("#{element} W/COUPON")
+          new_cart["#{element} W/COUPON"][:count] += 1
+          else
+            new_cart[item][:count] -= coup[:num]
+            new_cart["#{element} W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
         end
       end
     end
-
-    end
-  return cart
+  end
+  return new_cart
 end
 
 def apply_clearance(cart)
