@@ -20,15 +20,15 @@ end
 def apply_coupons(cart, coupons)
   new_cart = {}
   cart.each do |element, info|
-
+    new_cart[element] = info
     coupons.each do |coup|
       item_name = coup[:item]
-      if element == coup[:item] && info[:count] >= coup[:num]
-        if new_cart.keys.include?(coup[:item] + " W/COUPON")
-          new_cart[ coup[:item] + " W/COUPON"][:count] += 1
+      if element == item_name && info[:count] >= coup[:num]
+        if new_cart.keys.include?(item_name + " W/COUPON")
+          new_cart[ item_name + " W/COUPON"][:count] += 1
           else
             new_cart[element][:count] -= coup[:num]
-            new_cart[coup[:item] + " W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
+            new_cart[item_name + " W/COUPON"] = {:price => coup[:cost], :clearance => info[:clearance], :count => 1}
         end
       end
     end
