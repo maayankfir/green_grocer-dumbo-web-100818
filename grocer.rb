@@ -58,7 +58,7 @@ def checkout(cart, coupons)
     if cart[element][:count] > 0
     total_cost += ( cart[element][:price] * cart[element][:count] )
     if total_cost > 100
-      total_cost * 0.9
+      total_cost = total_cost * 0.9
   end
 end
 end
