@@ -37,7 +37,15 @@ def apply_coupons(cart, coupons)
 end
 
 def apply_clearance(cart)
-  # code here
+  new_cart = {}
+  cart.each do |element, info|
+    if info[:clearance] == true
+      new_cart[element] = {:price => info[:price]*0.8, :clearance => info[:clearance], :count => info[:count] }
+    else info[:clearance] == false
+      new_cart[element] = {:price => info[:price], :clearance => info[:clearance], :count => info[:count] }
+    end
+  end
+  new_cart
 end
 
 def checkout(cart, coupons)
